@@ -359,7 +359,7 @@ func (collector SystemCollector) collectNetworkAdapterStatus(ch chan<- prometheu
 
 func (collector SystemCollector) collectIDRACPortStatus(ch chan<- prometheus.Metric, pd *redfishstruct.IDRACPort) {
 	var pds redfishstruct.IDRACPort
-	err, idracports := pds.UnmarshalJson("/redfish/v1/Managers/1/EthernetInterfaces/1/")
+	err, idracports := pds.UnmarshalJson("/redfish/v1/Managers/iDRAC.Embedded.1/EthernetInterfaces/NIC.1")
 
 	if err != nil {
 		panic(err)
@@ -386,6 +386,7 @@ func (collector SystemCollector) collectIDRACPortStatus(ch chan<- prometheus.Met
 		fmt.Sprintf("%v", idracports.IPv4Addresses[0].Gateway),
 		fmt.Sprintf("%v", idracports.IPv4Addresses[0].SubnetMask),
 		fmt.Sprintf("%v", idracports.MTUSize),
+		fmt.Sprintf("%v", idracports.MACAddress),
 		fmt.Sprintf("%v", idracports.SpeedMbps),
 		fmt.Sprintf("%v", idracports.Status.Health),
 		fmt.Sprintf("%v", idracports.Status.State),

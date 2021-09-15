@@ -15,8 +15,8 @@ type Ipv4Address struct {
 }
 
 type VLAN struct {
-	VLANEnable bool   `json:"vlanenable"`
-	VLANId     string `json:"vlanid"`
+	VLANEnable bool `json:"vlanenable"`
+	VLANId     int  `json:"vlanid"`
 }
 
 type Status struct {
